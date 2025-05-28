@@ -16,27 +16,6 @@
         (function ($) {
             $(function () {
 
-                function createCard(name, list) {
-                    const t = document.querySelector('#card');
-                    const element = t.content.cloneNode(true);
-                    element.querySelector("#name").innerText = name;
-                    element.querySelector("#image").src += name + ".jpg";
-                    element.querySelector("#image").alt = name;
-                    list.appendChild(element);
-                }
-
-                function scrollToElement(elementIndex) {
-                    var element = (elementIndex < 0 ? null : list.children[elementIndex]);
-                    if (element != null) {
-                        element.scrollIntoView({ behavior: 'instant', block: 'start' });
-                    }
-                }
-
-                const params = new URLSearchParams(document.location.search);
-                const selectedName = params.get("s");
-                const list = document.querySelector('#list');
-                var selectedElementIndex = -1;
-
                 const names = [
                     "ABODEELY, Stephen",
                     "ADAMI, Virginia",
@@ -473,23 +452,56 @@
                     "YOUNG, Robert",
                     "ZAPPALA, Jonathan",
                     "ZEMIS, John",
-                ]
+                ];
 
-                for (let name of names) {
-                    createCard(name, list);
-                    if (name == selectedName)
-                        selectedElementIndex = list.children.length - 1;
+                const list = document.querySelector('#list');
+
+                function createItems() {
+
+                    for (let name of names) {
+
+                        const t = document.querySelector('#item');
+                        const element = t.content.cloneNode(true);
+                        element.querySelector("#name").innerText = name;
+                        element.querySelector("#image").src += name + ".jpg";
+                        element.querySelector("#image").alt = name;
+                        list.appendChild(element);
+                    }
                 }
 
-                scrollToElement(selectedElementIndex);
-            });
+                function searchItems(searchText) {
+                    if (searchText == null)
+                        return;
+                    searchText = searchText.toLowerCase();
 
+                    var index = 0;
+                    for (let name of names) {
+                        if (name.toLowerCase().includes(searchText)) {
+                            scrollToElement(index);
+                            break;
+                        }
+                        index++;
+                    }
+                }
+
+                function scrollToElement(elementIndex) {
+                    var element = (elementIndex < 0 ? null : list.children[elementIndex]);
+                    if (element != null)
+                        element.scrollIntoView({ behavior: 'instant', block: 'start' });
+                }
+
+                createItems();
+
+                const params = new URLSearchParams(document.location.search);
+                var searchText = params.get("name");
+                searchItems(searchText);
+            });
 
         })(jQuery);
     </script>
 </head>
 
-<template id="card">
+<template id="item">
     <div id="container">
         <img id="image" src="images/" height="400" alt="" />
         <p id="name" style="font-weight:bold"></p>
