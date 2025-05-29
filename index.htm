@@ -86,11 +86,6 @@
     <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript">
         history.scrollRestoration = "manual";
-
-
-
-
-
     </script>
 
     <script type="text/javascript">
@@ -107,6 +102,23 @@
                     $("#searchText").keyup(function () {
                         searchNames();
                     });
+                });
+/*
+                if ('ontouchstart' in window) {
+                    $(document).on('focus', 'textarea,input,select', function () {
+                        $('.navbar.navbar-fixed-top').css('position', 'absolute');
+                    }).on('blur', 'textarea,input,select', function () {
+                        $('.navbar.navbar-fixed-top').css('position', '');
+                    });
+                }*/
+                $("#searchText").on("focus", function () {
+                    $("body").css("position", "absolute");
+                    //$("#navbar").css("position", "fixed");
+                });
+
+                $("#searchText").on("blur", function () {
+                    $("body").css("position", "static");
+                    //$("#navbar").css("position", "sticky");
                 });
 
                 const names = [
