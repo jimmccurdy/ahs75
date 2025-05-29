@@ -112,13 +112,13 @@
                     });
                 }*/
                 $("#searchText").on("focus", function () {
-                    $("body").css("position", "absolute");
-                    //$("#navbar").css("position", "fixed");
+                    //$("body").css("position", "absolute");
+                    $("#navbar").css("position", "fixed");
                 });
 
                 $("#searchText").on("blur", function () {
-                    $("body").css("position", "static");
-                    //$("#navbar").css("position", "sticky");
+                    //$("body").css("position", "static");
+                    $("#navbar").css("position", "sticky");
                 });
 
                 const names = [
