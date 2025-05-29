@@ -22,7 +22,7 @@
         }
 
         #navbar {
-            position: fixed;
+            position: sticky;
             top: 0;
             overflow: hidden;
             background-color: #333;
@@ -56,6 +56,13 @@
         #navbar a.active {
             background-color: #04AA6D;
             color: white;
+        }
+
+        @media (max-width:550px) {
+            body.when-keyboard-showing .ugheader {
+                height: 0;
+                padding: 0;
+            }
         }
 
         /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
@@ -106,23 +113,27 @@
                         $("#navbar").css("position", "sticky");
                     });
                 });
-/*
-                if ('ontouchstart' in window) {
-                    $(document).on('focus', 'textarea,input,select', function () {
-                        $('.navbar.navbar-fixed-top').css('position', 'absolute');
-                    }).on('blur', 'textarea,input,select', function () {
-                        $('.navbar.navbar-fixed-top').css('position', '');
-                    });
-                }
-                $("#searchText").on("focus", function () {
-                    //$("body").css("position", "absolute");
-                    $("#navbar").css("position", "fixed");
-                });
 
-                $("#searchText").on("blur", function () {
-                    //$("body").css("position", "static");
-                    $("#navbar").css("position", "sticky");
-                });*/
+                //$("input, textarea").focus(function () { $(document.body).addClass('when-keyboard-showing'); });
+                //$("input, textarea").blur(function () { $(document.body).removeClass('when-keyboard-showing'); });
+
+                /*
+                                if ('ontouchstart' in window) {
+                                    $(document).on('focus', 'textarea,input,select', function () {
+                                        $('.navbar.navbar-fixed-top').css('position', 'absolute');
+                                    }).on('blur', 'textarea,input,select', function () {
+                                        $('.navbar.navbar-fixed-top').css('position', '');
+                                    });
+                                }
+                                $("#searchText").on("focus", function () {
+                                    //$("body").css("position", "absolute");
+                                    $("#navbar").css("position", "fixed");
+                                });
+                
+                                $("#searchText").on("blur", function () {
+                                    //$("body").css("position", "static");
+                                    $("#navbar").css("position", "sticky");
+                                });*/
 
                 const names = [
                     "ABODEELY, Stephen",
