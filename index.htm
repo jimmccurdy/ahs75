@@ -100,7 +100,10 @@
 
                 $(document).ready(function () {
                     $("#searchText").keyup(function () {
-                        searchNames();
+                        var searchText = this.value.toUpperCase();
+                        $("#navbar").css("position", "fixed");
+                        searchItems(searchText);
+                        $("#navbar").css("position", "sticky");
                     });
                 });
 /*
@@ -110,7 +113,7 @@
                     }).on('blur', 'textarea,input,select', function () {
                         $('.navbar.navbar-fixed-top').css('position', '');
                     });
-                }*/
+                }
                 $("#searchText").on("focus", function () {
                     //$("body").css("position", "absolute");
                     $("#navbar").css("position", "fixed");
@@ -119,7 +122,7 @@
                 $("#searchText").on("blur", function () {
                     //$("body").css("position", "static");
                     $("#navbar").css("position", "sticky");
-                });
+                });*/
 
                 const names = [
                     "ABODEELY, Stephen",
@@ -595,12 +598,6 @@
                         element.scrollIntoView({ behavior: 'instant', block: 'start' });
                 }
 
-                function searchNames() {
-                    var input = document.getElementById("searchText");
-                    var searchText = input.value.toUpperCase();
-                    searchItems(searchText);
-                }
-
                 createItems();
 
                 const params = new URLSearchParams(document.location.search);
@@ -627,7 +624,7 @@
 
     <div id="navbar">
         <a class="active" href="javascript:gotoTop()">Top</a>
-        <input id="searchText" type="text" placeholder="Search.." title="Type in a name or a partial name" />
+        <input id="searchText" type="text" placeholder="Search..." title="Type in a name or a partial name" />
     </div>
 
     <div id="list">
