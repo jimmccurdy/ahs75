@@ -101,9 +101,9 @@
                 $(document).ready(function () {
                     $("#searchText").keyup(function () {
                         var searchText = this.value.toUpperCase();
-                        //$("#navbar").css("position", "relative");
+                        $("#navbar").css("position", "absolute");
                         searchItems(searchText);
-                        //$("#navbar").css("position", "sticky");
+                        $("#navbar").css("position", "sticky");
                     });
                 });
 /*
