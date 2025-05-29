@@ -7,7 +7,8 @@
         AHS 1975
     </title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, interactive-widget=overlays-content">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, user-scalable=0, interactive-widget=overlays-content">
 
     <style>
         body {
@@ -59,7 +60,8 @@
             background-color: #04AA6D;
             color: white;
         }
-/*
+
+        /*
         @media (max-width:550px) {
             body.when-keyboard-showing .ugheader {
                 height: 0;
@@ -88,6 +90,8 @@
         */
 
         #list {
+            overflow-y: scroll;
+            overflow-x: hidden;
             padding-left: 16px;
             padding-top: 16px;
             padding-right: 16px;
