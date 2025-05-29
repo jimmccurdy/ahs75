@@ -61,13 +61,6 @@
             color: white;
         }
 
-        /*
-        @media (max-width:550px) {
-            body.when-keyboard-showing .ugheader {
-                height: 0;
-                padding: 0;
-            }
-        }*/
 
         /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
         /*
@@ -92,11 +85,14 @@
         #list {
             overflow-y: scroll;
             overflow-x: hidden;
-            padding-left: 16px;
-            padding-top: 16px;
-            padding-right: 16px;
-            padding-bottom: 0px;
+            padding: 16px 16px 0px 16px;
+            /* t r b l */
             background-color: #00f100;
+        }
+
+        #item {
+            padding-top: 50px;
+
         }
     </style>
 
@@ -111,6 +107,12 @@
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
 
+        function gotoBottom() {
+            const list = document.querySelector('#list');
+            document.body.scrollTop = list.scrollHeight; // For Safari
+            document.documentElement.scrollTop = list.scrollHeight; // For Chrome, Firefox, IE and Opera
+        }
+
         (function ($) {
 
             $(function () {
@@ -118,32 +120,13 @@
                 $(document).ready(function () {
                     $("#searchText").keyup(function () {
                         var searchText = this.value.toUpperCase();
-                        //$("#navbar").css("position", "absolute");
                         searchItems(searchText);
-                        //$("#navbar").css("position", "sticky");
+                    });
+                    $("#searchText").focus(function () {
+                        var searchText = this.value.toUpperCase();
+                        searchItems(searchText);
                     });
                 });
-
-                //$("input, textarea").focus(function () { $(document.body).addClass('when-keyboard-showing'); });
-                //$("input, textarea").blur(function () { $(document.body).removeClass('when-keyboard-showing'); });
-
-                /*
-                                if ('ontouchstart' in window) {
-                                    $(document).on('focus', 'textarea,input,select', function () {
-                                        $('.navbar.navbar-fixed-top').css('position', 'absolute');
-                                    }).on('blur', 'textarea,input,select', function () {
-                                        $('.navbar.navbar-fixed-top').css('position', '');
-                                    });
-                                }
-                                $("#searchText").on("focus", function () {
-                                    //$("body").css("position", "absolute");
-                                    $("#navbar").css("position", "fixed");
-                                });
-                
-                                $("#searchText").on("blur", function () {
-                                    //$("body").css("position", "static");
-                                    $("#navbar").css("position", "sticky");
-                                });*/
 
                 const names = [
                     "ABODEELY, Stephen",
@@ -585,11 +568,17 @@
 
                 const list = document.querySelector('#list');
 
+                createItems();
+
+                const params = new URLSearchParams(document.location.search);
+                var searchText = params.get("name");
+                searchItems(searchText);
+
                 function createItems() {
 
                     for (let name of names) {
 
-                        const t = document.querySelector('#item');
+                        const t = document.querySelector('#itemTemplate');
                         const element = t.content.cloneNode(true);
                         element.querySelector("#name").innerText = name;
                         element.querySelector("#image").src += name + ".jpg";
@@ -619,19 +608,14 @@
                         element.scrollIntoView({ behavior: 'instant', block: 'start' });
                 }
 
-                createItems();
-
-                const params = new URLSearchParams(document.location.search);
-                var searchText = params.get("name");
-                searchItems(searchText);
             });
 
         })(jQuery);
     </script>
 </head>
 
-<template id="item">
-    <div id="container">
+<template id="itemTemplate">
+    <div id="item">
         <img id="image" src="images/" height="400" alt="" />
         <p id="name" style="font-weight:bold"></p>
     </div>
@@ -645,6 +629,7 @@
 
     <div id="navbar">
         <a class="active" href="javascript:gotoTop()">Top</a>
+        <a class="active" href="javascript:gotoBottom()">Bottom</a>
         <input id="searchText" type="text" placeholder="Search..." title="Type in a name or a partial name" />
     </div>
 
