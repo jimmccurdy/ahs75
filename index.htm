@@ -45,8 +45,7 @@
         #searchText {
             float: right;
             padding: 6px;
-            margin-top: 8px;
-            margin-right: 8px;
+            margin: 6px;
             border: none;
             font-size: 17px;
             max-width: 175px;
@@ -62,6 +61,17 @@
             color: white;
         }
 
+        #list {
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding: 16px 16px 0px 16px;
+            /* t r b l */
+            background-color: #fff;
+        }
+
+        #item {
+            padding-top: 50px;
+        }
 
         /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
         /*
@@ -82,19 +92,6 @@
             }
         }
         */
-
-        #list {
-            overflow-y: scroll;
-            overflow-x: hidden;
-            padding: 16px 16px 0px 16px;
-            /* t r b l */
-            background-color: #00f100;
-        }
-
-        #item {
-            padding-top: 50px;
-
-        }
     </style>
 
     <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
