@@ -112,11 +112,18 @@
         function gotoTop() {
             if (scrollToFirstElementShown())
                 return;
+
+            // Scroll the list to the bottom if no elements shown
+            const list = document.querySelector('#list');
+            document.body.scrollTop = list.scrollHeight; // For Safari
+            document.documentElement.scrollTop = list.scrollHeight; // For Chrome, Firefox, IE and Opera
         }
 
         function gotoBottom() {
             if (scrollToLastElementShown())
                 return;
+
+            // Scroll the list to the bottom if no elements shown
             const list = document.querySelector('#list');
             document.body.scrollTop = list.scrollHeight; // For Safari
             document.documentElement.scrollTop = list.scrollHeight; // For Chrome, Firefox, IE and Opera
