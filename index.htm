@@ -69,7 +69,7 @@
 
         #list {
             overflow-x: hidden;
-            padding: 16px 16px 500px 16px;
+            padding: 16px 16px 600px 16px;
             /* t r b l */
             background-color: #fff;
         }
@@ -170,6 +170,7 @@
                     document.querySelector("#searchText").addEventListener("search", function () {
                         var searchText = this.value.toUpperCase();
                         searchItems(searchText);
+                        this.blur();
                     });
                 });
 
