@@ -110,10 +110,13 @@
 
     <script type="text/javascript">
         function gotoTop() {
-            scrollToFirstElementShown();
+            if (scrollToFirstElementShown())
+                return;
         }
 
         function gotoBottom() {
+            if (scrollToLastElementShown())
+                return;
             const list = document.querySelector('#list');
             document.body.scrollTop = list.scrollHeight; // For Safari
             document.documentElement.scrollTop = list.scrollHeight; // For Chrome, Firefox, IE and Opera
@@ -130,8 +133,20 @@
                 if (element.hidden)
                     continue;
                 element.scrollIntoView({ behavior: 'instant', block: 'start' });
-                break;
+                return true;
             }
+            return false;
+        }
+
+        function scrollToLastElementShown() {
+            const children = Array.from(list.children).reverse();
+            for (let element of children) {
+                if (element.hidden)
+                    continue;
+                element.scrollIntoView({ behavior: 'instant', block: 'start' });
+                return true;
+            }
+            return false;
         }
 
         function showElement(elementIndex, show) {
@@ -153,9 +168,8 @@
                         searchItems(searchText);
                     });
                     document.querySelector("#searchText").addEventListener("search", function () {
-                        this.value = "";
-                        searchItems("");
-                        scrollToFirstElementShown();
+                        var searchText = this.value.toUpperCase();
+                        searchItems(searchText);
                     });
                 });
 
@@ -602,6 +616,7 @@
 
                 const params = new URLSearchParams(document.location.search);
                 var searchText = params.get("name");
+                document.querySelector("#searchText").value = searchText;
                 searchItems(searchText);
 
                 function createItems() {
