@@ -20,7 +20,8 @@
 
         #header {
             background-color: #f1f1f1;
-            padding: 15px;/* t r b l */
+            padding: 15px;
+            /* t r b l */
             text-align: center;
         }
 
@@ -37,7 +38,8 @@
             display: block;
             color: #f2f2f2;
             text-align: center;
-            padding: 12px;/* t r b l */
+            padding: 12px;
+            /* t r b l */
             text-decoration: none;
             font-size: 17px;
         }
@@ -52,7 +54,7 @@
         }
 
         input[type="search"]::-webkit-search-cancel-button {
-            cursor: pointer; /* Change the cursor to a hand when hovering over the clear button */
+            cursor: pointer;
         }
 
         #navbar a:hover {
@@ -67,13 +69,17 @@
 
         #list {
             overflow-x: hidden;
-            padding: 16px 16px 0px 16px;
+            padding: 16px 16px 500px 16px;
             /* t r b l */
             background-color: #fff;
         }
 
         #item {
             padding-top: 50px;
+        }
+
+        #image {
+            cursor: pointer;
         }
 
         /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
@@ -104,8 +110,7 @@
 
     <script type="text/javascript">
         function gotoTop() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            scrollToFirstElementShown();
         }
 
         function gotoBottom() {
@@ -114,8 +119,28 @@
             document.documentElement.scrollTop = list.scrollHeight; // For Chrome, Firefox, IE and Opera
         }
 
-        (function ($) {
+        function scrollToElement(elementIndex) {
+            var element = (elementIndex < 0 ? null : list.children[elementIndex]);
+            if (element != null)
+                element.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }
 
+        function scrollToFirstElementShown() {
+            for (let element of list.children) {
+                if (element.hidden)
+                    continue;
+                element.scrollIntoView({ behavior: 'instant', block: 'start' });
+                break;
+            }
+        }
+
+        function showElement(elementIndex, show) {
+            var element = (elementIndex < 0 ? null : list.children[elementIndex]);
+            if (element != null)
+                element.hidden = !show;
+        }
+
+        (function ($) {
             $(function () {
 
                 $(document).ready(function () {
@@ -123,10 +148,14 @@
                         var searchText = this.value.toUpperCase();
                         searchItems(searchText);
                     });
+                    document.querySelector("#searchText").addEventListener("focus", function () {
+                        var searchText = this.value.toUpperCase();
+                        searchItems(searchText);
+                    });
                     document.querySelector("#searchText").addEventListener("search", function () {
-                        document.querySelector("#searchText").value = "";
+                        this.value = "";
                         searchItems("");
-                        scrollToElement(0);
+                        scrollToFirstElementShown();
                     });
                 });
 
@@ -579,8 +608,8 @@
 
                     for (let name of names) {
 
-                        const t = document.querySelector('#itemTemplate');
-                        const element = t.content.cloneNode(true);
+                        const template = document.querySelector('#itemTemplate');
+                        const element = template.content.cloneNode(true);
                         element.querySelector("#name").innerText = name;
                         element.querySelector("#image").src += name + ".jpg";
                         element.querySelector("#image").alt = name;
@@ -600,35 +629,17 @@
                 function searchItems(searchText) {
                     if (searchText == null)
                         return;
-                    searchText = searchText.toLowerCase();
+                    searchText = searchText.toLowerCase().trim();
 
                     var index = 0;
                     for (let name of names) {
-                        const show = (name.toLowerCase().includes(searchText));
-                        hideElement(index, !show);
+                        const show = name.toLowerCase().includes(searchText);
+                        showElement(index, show);
                         index++;
                     }
-                    //for (let name of names) {
-                    //    if (name.toLowerCase().includes(searchText)) {
-                    //        scrollToElement(index);
-                    //        break;
-                    //    }
-                    //    index++;
-                    //}
-                }
 
-                function scrollToElement(elementIndex) {
-                    var element = (elementIndex < 0 ? null : list.children[elementIndex]);
-                    if (element != null)
-                        element.scrollIntoView({ behavior: 'instant', block: 'start' });
+                    scrollToFirstElementShown();
                 }
-
-                function hideElement(elementIndex, hide) {
-                    var element = (elementIndex < 0 ? null : list.children[elementIndex]);
-                    if (element != null)
-                        element.hidden = hide;
-                }
-
             });
 
         })(jQuery);
