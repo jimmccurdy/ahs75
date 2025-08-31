@@ -2,695 +2,721 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <title>
-        AHS 1975
-    </title>
+	<meta charset="UTF-8" />
+	<title>
+		AHS 1975
+	</title>
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, user-scalable=0, interactive-widget=overlays-content">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, user-scalable=0, interactive-widget=overlays-content">
 
-    <style>
-        body {
-            margin: 0;
-            font-size: 28px;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #ccc;
-        }
+	<style>
+		body {
+			margin: 0;
+			font-size: 28px;
+			font-family: Arial, Helvetica, sans-serif;
+			background-color: #ccc;
+		}
 
-        #header {
-            background-color: #f1f1f1;
-            padding: 15px;
-            /* t r b l */
-            text-align: center;
-        }
+		#header {
+			background-color: #f1f1f1;
+			padding: 15px;
+			/* t r b l */
+			text-align: center;
+		}
 
-        #navbar {
-            position: sticky;
-            top: 0;
-            overflow: hidden;
-            background-color: #333;
-        }
+		#navbar {
+			position: sticky;
+			top: 0;
+			overflow: hidden;
+			background-color: #333;
+		}
 
-        #navbar a,
-        label {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 12px;
-            /* t r b l */
-            text-decoration: none;
-            font-size: 17px;
-        }
+		#navbar a,
+		label {
+			float: left;
+			display: block;
+			color: #f2f2f2;
+			text-align: center;
+			padding: 12px;
+			/* t r b l */
+			text-decoration: none;
+			font-size: 17px;
+		}
 
-        #searchText {
-            float: right;
-            padding: 6px;
-            margin: 6px;
-            border: none;
-            font-size: 17px;
-            max-width: 175px;
-        }
+		#searchText {
+			float: right;
+			padding: 6px;
+			margin: 6px;
+			border: none;
+			font-size: 17px;
+			max-width: 175px;
+		}
 
-        input[type="search"]::-webkit-search-cancel-button {
-            cursor: pointer;
-        }
+		input[type="search"]::-webkit-search-cancel-button {
+			cursor: pointer;
+		}
 
-        #navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+		#navbar a:hover {
+			background-color: #ddd;
+			color: black;
+		}
 
-        #navbar a.active {
-            background-color: #04AA6D;
-            color: white;
-        }
+		#navbar a.active {
+			background-color: #04AA6D;
+			color: white;
+		}
 
-        #list {
-            overflow-x: hidden;
-            padding: 16px 16px 600px 16px;
-            /* t r b l */
-            background-color: #fff;
-        }
+		#list {
+			overflow-x: hidden;
+			padding: 16px 16px 600px 16px;
+			/* t r b l */
+			background-color: #fff;
+		}
 
-        #item {
-            padding-top: 50px;
-        }
+		#item {
+			padding-top: 50px;
+		}
 
-        #image {
-            cursor: pointer;
-        }
+		#image {
+			cursor: pointer;
+		}
 
-        /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-        /*
-        @media screen and (max-width: 600px) {
+		/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+		/*
+		@media screen and (max-width: 600px) {
 
-            #navbar a,
-            #navbar input[type=text] {
-                float: none;
-                display: block;
-                text-align: left;
-                width: 100%;
-                margin: 0;
-                padding: 14px;
-            }
+			#navbar a,
+			#navbar input[type=text] {
+				float: none;
+				display: block;
+				text-align: left;
+				width: 100%;
+				margin: 0;
+				padding: 14px;
+			}
 
-            #navbar input[type=text] {
-                border: 1px solid #ccc;
-            }
-        }
-        */
-    </style>
+			#navbar input[type=text] {
+				border: 1px solid #ccc;
+			}
+		}
+		*/
+	</style>
 
-    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript">
-        history.scrollRestoration = "manual";
-    </script>
+	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript">
+		history.scrollRestoration = "manual";
+	</script>
 
-    <script type="text/javascript">
-        function gotoTop() {
-            if (scrollToFirstElementShown())
-                return;
+	<script type="text/javascript">
+		function gotoTop() {
+			if (scrollToFirstElementShown())
+				return;
 
-            // Scroll the list to the bottom if no elements shown
-            const list = document.querySelector('#list');
-            document.body.scrollTop = list.scrollHeight; // For Safari
-            document.documentElement.scrollTop = list.scrollHeight; // For Chrome, Firefox, IE and Opera
-        }
+			// Scroll the list to the bottom if no elements shown
+			const list = document.querySelector('#list');
+			document.body.scrollTop = list.scrollHeight; // For Safari
+			document.documentElement.scrollTop = list.scrollHeight; // For Chrome, Firefox, IE and Opera
+		}
 
-        function gotoBottom() {
-            if (scrollToLastElementShown())
-                return;
+		function gotoBottom() {
+			if (scrollToLastElementShown())
+				return;
 
-            // Scroll the list to the bottom if no elements shown
-            const list = document.querySelector('#list');
-            document.body.scrollTop = list.scrollHeight; // For Safari
-            document.documentElement.scrollTop = list.scrollHeight; // For Chrome, Firefox, IE and Opera
-        }
+			// Scroll the list to the bottom if no elements shown
+			const list = document.querySelector('#list');
+			document.body.scrollTop = list.scrollHeight; // For Safari
+			document.documentElement.scrollTop = list.scrollHeight; // For Chrome, Firefox, IE and Opera
+		}
 
-        function scrollToElement(elementIndex) {
-            var element = (elementIndex < 0 ? null : list.children[elementIndex]);
-            if (element != null)
-                element.scrollIntoView({ behavior: 'instant', block: 'start' });
-        }
+		function scrollToElement(elementIndex) {
+			var element = (elementIndex < 0 ? null : list.children[elementIndex]);
+			if (element != null)
+				element.scrollIntoView({ behavior: 'instant', block: 'start' });
+		}
 
-        function scrollToFirstElementShown() {
-            for (let element of list.children) {
-                if (element.hidden)
-                    continue;
-                element.scrollIntoView({ behavior: 'instant', block: 'start' });
-                return true;
-            }
-            return false;
-        }
+		function scrollToFirstElementShown() {
+			for (let element of list.children) {
+				if (element.hidden)
+					continue;
+				element.scrollIntoView({ behavior: 'instant', block: 'start' });
+				return true;
+			}
+			return false;
+		}
 
-        function scrollToLastElementShown() {
-            const children = Array.from(list.children).reverse();
-            for (let element of children) {
-                if (element.hidden)
-                    continue;
-                element.scrollIntoView({ behavior: 'instant', block: 'start' });
-                return true;
-            }
-            return false;
-        }
+		function scrollToLastElementShown() {
+			const children = Array.from(list.children).reverse();
+			for (let element of children) {
+				if (element.hidden)
+					continue;
+				element.scrollIntoView({ behavior: 'instant', block: 'start' });
+				return true;
+			}
+			return false;
+		}
 
-        function showElement(elementIndex, show) {
-            var element = (elementIndex < 0 ? null : list.children[elementIndex]);
-            if (element != null)
-                element.hidden = !show;
-        }
+		function showElement(elementIndex, show) {
+			var element = (elementIndex < 0 ? null : list.children[elementIndex]);
+			if (element != null)
+				element.hidden = !show;
+		}
 
-        (function ($) {
-            $(function () {
+		(function ($) {
+			$(function () {
 
-                $(document).ready(function () {
-                    document.querySelector("#searchText").addEventListener("keyup", function () {
-                        var searchText = this.value.toUpperCase();
-                        searchItems(searchText);
-                    });
-                    document.querySelector("#searchText").addEventListener("focus", function () {
-                        var searchText = this.value.toUpperCase();
-                        searchItems(searchText);
-                    });
-                    document.querySelector("#searchText").addEventListener("search", function () {
-                        var searchText = this.value.toUpperCase();
-                        searchItems(searchText);
-                        this.blur();
-                    });
-                });
+				$(document).ready(function () {
+					document.querySelector("#searchText").addEventListener("keyup", function () {
+						var searchText = this.value.toUpperCase();
+						searchItems(searchText);
+					});
+					document.querySelector("#searchText").addEventListener("focus", function () {
+						var searchText = this.value.toUpperCase();
+						searchItems(searchText);
+					});
+					document.querySelector("#searchText").addEventListener("search", function () {
+						var searchText = this.value.toUpperCase();
+						searchItems(searchText);
+						this.blur();
+					});
+					document.querySelector("#deceased").addEventListener("change", function () {
+						var searchText = document.querySelector("#searchText").value;
+						searchItems(searchText);
+						this.blur();
+					});
+				});
 
-                const names = [
-                    "ABODEELY, Stephen",
-                    "ADAMI, Virginia",
-                    "ADORNATO, Victor",
-                    "AIELLO, John",
-                    "ALEXANDER, Albert",
-                    "ALLEN, Jeanne",
-                    "ANDERSON, Kurt",
-                    "ATWOOD, Andrea",
-                    "BANTON, Steven",
-                    "BARTLETT, Brian",
-                    "BARTOW, Margaret",
-                    "BATCHELDER, Trudie",
-                    "BATESON, Maureen",
-                    "BATTLES, Maryellen",
-                    "BECKER, Linda",
-                    "BENSON, Ruth",
-                    "BENTLEY, Kama",
-                    "BERBERIAN, Karen",
-                    "BERENSON, Jeffrey",
-                    "BERNARDIN, Anne",
-                    "BERRY, Brian",
-                    "BERTHEL, Karen",
-                    "BEST, Mary",
-                    "BEST, Sarah",
-                    "BLACK, Duncan",
-                    "BLAKE, Peter",
-                    "BOCHES, Amy",
-                    "BOGOSIAN, Brian",
-                    "BONO, Richard",
-                    "BORRELLI, Ralph",
-                    "BOTSCH, Mark",
-                    "BOWAN, Robert",
-                    "BRADFORD, Stephen",
-                    "BRENNAN, Christine",
-                    "BRENNAN, Linda",
-                    "BRENNAN, Timothy",
-                    "BRILLIANT, Philip",
-                    "BUCK, Andy",
-                    "BURKE, Douglas",
-                    "BURKE, Thomas",
-                    "BURTON, Craig",
-                    "CAFFREY, Ellen",
-                    "CAMPBELL, Douglas",
-                    "CAMPBELL, Mary",
-                    "CANTWELL, Gregory",
-                    "CANUEL, Deborah",
-                    "CARRAS, Cathy",
-                    "CASELDEN, Edward",
-                    "CHAFE, Edward",
-                    "CHAKARIAN, Carrie",
-                    "CHALIFOUR, Mary Elayne",
-                    "CHARLAND, Roy",
-                    "CINALI, Umit",
-                    "CLIFTON, Andrea",
-                    "CLINT, Lynette",
-                    "CLOUGH, Douglas",
-                    "COBURN, Krista",
-                    "COFFEY, Geraldine",
-                    "COLLINS, Barbara",
-                    "COLLINS, Harry",
-                    "COLLINS, James",
-                    "COLOMBOSIAN, Nancy",
-                    "COMPARATO, Thomas",
-                    "CONLON, Hugh",
-                    "CONNOLLY, Edmond",
-                    "CONNOR, James",
-                    "CONTARINO, Carol",
-                    "CORCORAN, Stephen",
-                    "COX, James",
-                    "COX, Martha",
-                    "COX, Paul",
-                    "CRAIG, Heather",
-                    "CROSWELL, Andrew",
-                    "CRUSH, William",
-                    "CULL, David",
-                    "CULL, John",
-                    "CUMMINGS, Jeanie",
-                    "CURTIN, Michael",
-                    "D'ANTONI, James",
-                    "DALY, Ann Marie",
-                    "DAVIS, Mark",
-                    "DAVIS, Martin",
-                    "DEFRANCO, Mary",
-                    "DEGAN, Kathleen",
-                    "DEGREGORIO, Cathy",
-                    "DELANEY, Tracy",
-                    "DELUCIA, Nancy",
-                    "DEMERS, Rosemary",
-                    "DEROSA, Timothy",
-                    "DEROSIER, Michael",
-                    "DEVINE, Allen",
-                    "DIAK, Thomas",
-                    "DIBITETTO, John",
-                    "DITROIA, Michael",
-                    "DIXON, Barbara",
-                    "DOHERTY, Jane",
-                    "DONOVAN, Sharon",
-                    "DORAN, Michael",
-                    "DOW, Virginia",
-                    "DOWD, Debra",
-                    "DRISCOLL, Cyd",
-                    "DRISCOLL, Doreen",
-                    "DUBE, Susan",
-                    "DUBOSE, Katherine",
-                    "DUFFTY, Philip",
-                    "DUFFY, Tom",
-                    "DUSTIN, Mary",
-                    "DWORKIN, Alan",
-                    "ECKFELDT, Patricia",
-                    "EICHNER, Jayne",
-                    "EISENBERG, Edward",
-                    "EOSEFOW, John",
-                    "ERICKSON, Mark",
-                    "ERLER, Richard",
-                    "ESTABROOK, Boyd",
-                    "FABIANI, Stephen",
-                    "FAIR, Janice",
-                    "FARIA, Linda",
-                    "FARIA, Robert",
-                    "FARRINGTON, Kathleen",
-                    "FICHERA, Vicki",
-                    "FISHER, Madelaine",
-                    "FITZGERALD, David",
-                    "FLANNERY, Brian",
-                    "FLEWWELLIN, Janet",
-                    "FORREST, Candace",
-                    "FORTIER, Paul",
-                    "FOX, John",
-                    "FRACKIEWICZ, Barbara",
-                    "FRANCIS, Sarah",
-                    "FRANZ, Lesley",
-                    "FRANZE, Ingrid",
-                    "FRANZESE, Karen",
-                    "FRASER, Sandra",
-                    "FROST, Jason",
-                    "GABLE, Jeffrey",
-                    "GALVIN, Michael",
-                    "GANTZ, Gregory",
-                    "GELARDI, Wayne",
-                    "GEORGE, Lynne",
-                    "GETTEL, Roger",
-                    "GOLDMAN, Jamie",
-                    "GOLDMAN, Wendy",
-                    "GONZALEZ, Jesus",
-                    "GOUMAS, Michael",
-                    "GRANT, Marguerite",
-                    "GRAVES, Tyrone",
-                    "GRAY, Debra",
-                    "GRECOE, Kanella",
-                    "GREENBERG, Alan",
-                    "GREENLEE, Kathleen",
-                    "GRILLO, MaryJo",
-                    "GRISWOLD, Nancy",
-                    "GROEZINGER, Scott",
-                    "GUILMETTE, JoAnn",
-                    "GUSTAFSON, Daryl",
-                    "HADAM, Virginia",
-                    "HALBACH, Meryl",
-                    "HALPERT, Janet",
-                    "HAMILTON, Mark",
-                    "HANBY, Robin",
-                    "HANNON, William",
-                    "HANSON, Donna",
-                    "HARDCASTLE, Ann",
-                    "HARHEN, Cynthia",
-                    "HARTFORD, Allen",
-                    "HARTMAN, Diane",
-                    "HAYMAN, Deborah",
-                    "HEALY, Sandra",
-                    "HECKEN, Margit",
-                    "HEINEMANN, Monika",
-                    "HELLMAN, Steven",
-                    "HEMPSTEAD, David",
-                    "HEMSWORTH, Laurie",
-                    "HERR, John",
-                    "HERRON, Sally",
-                    "HILL, Erica",
-                    "HILLMAN, Steven",
-                    "HODGE, Willie",
-                    "HOLMES, Penny",
-                    "HOPKINS, Paula",
-                    "HUGGINS, Patricia",
-                    "HUGHES, MaryLou",
-                    "HURLEY, Sheila",
-                    "HYSLIP, Donna",
-                    "IACOBO, Maria",
-                    "IANAZZI, Elizabeth",
-                    "IGOE, Anne",
-                    "JACOBSEN, Donna Lee",
-                    "JACQUES, Curtis",
-                    "JAFFE, Frederick",
-                    "JOHNSON, Christine",
-                    "JOHNSON, Kristin",
-                    "JOHNSON, Patricia",
-                    "JOHNSON, Sue Ellen",
-                    "JOLLIFFE, Elizabeth",
-                    "JOLLIFFE, Margaret",
-                    "JORDAN, Jefferson",
-                    "JOYNSON, Robert",
-                    "JUAREZ, John",
-                    "KALIL, Janet",
-                    "KAPLAN, Amy",
-                    "KAVANAGH, Elizabeth",
-                    "KEEFE, Mary",
-                    "KEELER, Terry",
-                    "KELLEHER, Ellen",
-                    "KELLER, Kenneth",
-                    "KELLEY, Elaine",
-                    "KENNEY, Joshua",
-                    "KENNEY, William",
-                    "KING, Daniel",
-                    "KING, Martha",
-                    "KOCH, Daniel",
-                    "KOFFMAN, Cathi",
-                    "KRIKORIAN, Hope",
-                    "KRIKORIAN, John",
-                    "L'ITALIEN, Joseph",
-                    "LABELL, Jeffrey",
-                    "LAFOND, Daniel",
-                    "LAFOUNTAIN, Jeffrey",
-                    "LAFRENIER, Audrey",
-                    "LANDER, Kirby",
-                    "LAROCHELLE, David",
-                    "LAROSA, Robin",
-                    "LARSON, Shannon",
-                    "LARSON, Wayne",
-                    "LATORRE, Philip",
-                    "LEBOWITZ, Pamela",
-                    "LEFEBVRE, Lisa",
-                    "LENES, Judy",
-                    "LENES, Trudy",
-                    "LEVINSON, Karyl",
-                    "LEWIS, William",
-                    "LINDSEY, Laura",
-                    "LINDSEY, Michelle",
-                    "LIPPI, Karen",
-                    "LOEB, Ina",
-                    "LOOK, Robert",
-                    "LOOSIGIAN, Lauren",
-                    "LYNCH, Cathleen",
-                    "LYNCH, Danny",
-                    "LYNCH, Leo",
-                    "MACGOWAN, Bradford",
-                    "MADENSKY, Ann",
-                    "MAFFEI, Gary",
-                    "MAGOON, Bonnie",
-                    "MALONEY, Nancy",
-                    "MALOOF, David",
-                    "MARCOUX, Nancy",
-                    "MARINO, Richard",
-                    "MARKEY, Philip",
-                    "MARKHAM, Barbara",
-                    "MARTELLUCCI, Pamela",
-                    "MARTIN, William",
-                    "MARVIN, Kathleen",
-                    "MAYARD, Jean",
-                    "MAYO, Michael",
-                    "MCCABE, Kim",
-                    "MCCALLION, Margaret",
-                    "MCCARTHY, Timothy",
-                    "MCDONALD, Janet",
-                    "MCDONALD, John",
-                    "MCENEANEY, Connie",
-                    "MCHALE, Patricia",
-                    "MCINTOSH, Heidi",
-                    "MCINTYRE, Paul",
-                    "MCKALLAGAT, Stephen",
-                    "MCLARNEY, Mary Jo",
-                    "MCMANUS, Bonnie",
-                    "MCNAMARA, Jane",
-                    "MCNAMARA, Joan",
-                    "MCVEY, Paul",
-                    "MEYERS, Timothy",
-                    "MILLER, Kimberley",
-                    "MILLS, Jessie",
-                    "MILSTONE, David",
-                    "MINGHELLA, Nanci",
-                    "MINISCALCO, Joan",
-                    "MONTGOMERY, Kenneth",
-                    "MOODIE, Diane",
-                    "MOONEY, John",
-                    "MOORE, Brian",
-                    "MORIARTY, Mary Jane",
-                    "MORRIS, Sharon",
-                    "MORRISON, Elise",
-                    "MORRISROE, Marie",
-                    "MOSELEY, Ann",
-                    "MOULTON, Susan",
-                    "MOWER, James",
-                    "MUFSON, Neil",
-                    "MURGIA, Robert",
-                    "NAPOLI, Shirley",
-                    "NARDONE, Gayle",
-                    "NEGRON, Raymond",
-                    "NEISTADT, Jill",
-                    "NICOLOSI, Nina",
-                    "NOLAN, Joseph",
-                    "NOLLET, Judith",
-                    "NORRIS, Thomas",
-                    "O'BRIEN, Joanne",
-                    "O'CONNOR, Nancy",
-                    "O'REILLY, Jane",
-                    "OBERMEiER, Gary",
-                    "ORLANDO, Edward",
-                    "OTTES, Peter",
-                    "PARENT, Gayle",
-                    "PARIS, John",
-                    "PARK, Regina",
-                    "PAYNE, Kimberly",
-                    "PECK, Jeffrey",
-                    "PELC, Julie",
-                    "PERRAULT, Mona",
-                    "PETERSON, Robert",
-                    "PETTY, Glen",
-                    "PETTY, Vivian",
-                    "PORCARO, Donna",
-                    "PORTER, Steven",
-                    "POWERS, Barbara",
-                    "PRATT, David",
-                    "RAMSDELL, Carolyn",
-                    "RANDALL, Kathleen",
-                    "RATTE, MaryAnne",
-                    "REARDON, Lianne",
-                    "REDDINGTON, Christine",
-                    "REILLY, Peter",
-                    "REMING, Kurt",
-                    "RENNY, Karen",
-                    "RINDONE, Paul",
-                    "ROBSON, Matthew",
-                    "ROCHWARG, John",
-                    "ROMANO, Cindy",
-                    "ROMANO, Susan",
-                    "ROSEN, Douglas",
-                    "ROSSITTO, Neila",
-                    "ROY, Carmel",
-                    "RUSSELL, Laura",
-                    "RUSSO, Michael",
-                    "SABA, Kevin",
-                    "SALOIS, Audrey",
-                    "SANBORN, Rena",
-                    "SANCHEZ, Virgil",
-                    "SAUNDERS, Diane",
-                    "SAVINELLI, Linda",
-                    "SCHADLICK, William",
-                    "SCHOFIELD, Linda",
-                    "SCHOFIELD, Lora",
-                    "SHACK, Karen",
-                    "SHAW, John",
-                    "SHEEHAN, Nancy",
-                    "SHEPHERD, Daniel",
-                    "SHERMAN, Scott",
-                    "SHERRERD, Alan",
-                    "SIDERWITCH, Kent",
-                    "SILVERMAN, Nicki",
-                    "SIMON, Margo",
-                    "SIMPSON, Beverly",
-                    "SIROIS, David",
-                    "SKELLCHOCK, Steve",
-                    "SMYTHE, Victoria",
-                    "SOCHA, Paula",
-                    "SOMMA, Michele",
-                    "SOUZA, David",
-                    "SQUIBB, Carolyn",
-                    "ST. AMAND, Randall",
-                    "ST. GERMAIN, Brenda",
-                    "ST. GERMAIN, Roch",
-                    "ST. LOUIS, Richard",
-                    "STAMAS, Theodore",
-                    "STARKS, Waneta",
-                    "STEIN, Tobie",
-                    "STEWART, Leslie",
-                    "STRAUSS, Myrna",
-                    "STUPACK, Robin",
-                    "SULLIVAN, Cynthia",
-                    "SULLIVAN, Debbie",
-                    "SULLIVAN, Mary Lou",
-                    "SULLIVAN, Nancy",
-                    "SUMNER, Patricia",
-                    "SUNDSTROM, Paula",
-                    "SYIEK, David",
-                    "TAFT, Philip",
-                    "TALLINI, David",
-                    "TANNER, John",
-                    "TASSINARI, Russell",
-                    "TAYLOR, Leonard",
-                    "TAYMOR, Sharyn",
-                    "TETREAULT, Mary",
-                    "THERRIEN, Patricia",
-                    "THIBODEAU, Joyce",
-                    "THOMPKINS, Kyle",
-                    "TOSCANO, Michael",
-                    "TOWNE, Susan",
-                    "TRAVIS, Mark",
-                    "TRUJILLO, Liliam",
-                    "TURESKY, Scott",
-                    "TURGISS, Keith",
-                    "TYNING, Nancy",
-                    "UNDERWOOD, Christopher",
-                    "VONDELL, Dirk",
-                    "WALKUP, Sharon",
-                    "WALLIS, Ian",
-                    "WALSH, Douglas",
-                    "WALSH, Nancie",
-                    "WATTS, Deborah",
-                    "WEDGE, Paul",
-                    "WEST, Carl",
-                    "WESTAWAY, Deborah",
-                    "WETTERBERG, Wendi",
-                    "WHITE, Denise",
-                    "WHITNEY, Carolee",
-                    "WHITTON, Dennis",
-                    "WHITTON, Judy",
-                    "WILDE, Ellen",
-                    "WILE, Janice",
-                    "WILKINS, Stephen",
-                    "WILLIAMS, Michael",
-                    "WILLIAMS, Nathaniel",
-                    "WILLWERTH, James",
-                    "WINTERS, Jeffrey",
-                    "WINTERS, Sean",
-                    "WOJTKUN, Joseph",
-                    "WRIGHT, Diane",
-                    "WRIGLEY, Donna",
-                    "YEITER, Donna",
-                    "YOUNG, David",
-                    "YOUNG, Diane",
-                    "YOUNG, Jennifer",
-                    "YOUNG, Leonard",
-                    "YOUNG, Mark",
-                    "YOUNG, Merle",
-                    "YOUNG, Nancy",
-                    "YOUNG, Robert",
-                    "ZAPPALA, Jonathan",
-                    "ZEMIS, John",
-                ];
+				const students = [
+					{ name: "ABODEELY, Stephen",		died: 0, newname: "Steve Abodeely" },
+					{ name: "ADAMI, Virginia",			died: 0, newname: "Ginger Adami" },
+					{ name: "ADORNATO, Victor",			died: 0, newname: "Victor Adornato" },
+					{ name: "AIELLO, John",				died: 0, newname: "Jack Aiello" },
+					{ name: "ALEXANDER, Albert",		died: 0, newname: "Chip Alexander" },
+					{ name: "ALLEN, Jeanne",			died: 1, newname: "Jeanne Gore" },
+					{ name: "ANDERSON, Kurt",			died: 0, newname: "Kurt Anderson" },
+					{ name: "ATWOOD, Andrea",			died: 0, newname: "Andy Atwood" },
+					{ name: "BANTON, Steven",			died: 1, newname: "Steve Banton" },
+					{ name: "BARTLETT, Brian",			died: 0, newname: "Brian Bartlett" },
+					{ name: "BARTOW, Margaret",			died: 1, newname: "Meg Bartow" },
+					{ name: "BATCHELDER, Trudie",		died: 0, newname: "Trudie Batchelder" },
+					{ name: "BATESON, Maureen",			died: 0, newname: "Maureen Barenboim" },
+					{ name: "BATTLES, Maryellen",		died: 0, newname: "Maryellen Battles" },
+					{ name: "BECKER, Linda",			died: 0, newname: "Linda Becker" },
+					{ name: "BENSON, Ruth",				died: 0, newname: "Ruth Parker" },
+					{ name: "BENTLEY, Kama",			died: 0, newname: "Kama Bentley" },
+					{ name: "BERBERIAN, Karen",			died: 0, newname: "Karen Berberian" },
+					{ name: "BERENSON, Jeffrey",		died: 0, newname: "Jeff Berenson" },
+					{ name: "BERNARDIN, Anne",			died: 0, newname: "Anne Bernardin" },
+					{ name: "BERRY, Brian",				died: 1, newname: "Brian Berry" },
+					{ name: "BERTHEL, Karen",			died: 0, newname: "Karen Berthel" },
+					{ name: "BEST, Mary",				died: 0, newname: "Mary Best" },
+					{ name: "BEST, Sarah",				died: 0, newname: "Sarah Darmofal" },
+					{ name: "BLACK, Duncan",			died: 0, newname: "Duncan Black" },
+					{ name: "BLAKE, Peter",				died: 0, newname: "Pete Blake" },
+					{ name: "BOCHES, Amy",				died: 0, newname: "Amy Boches" },
+					{ name: "BOGOSIAN, Brian",			died: 0, newname: "Brian Bogosian" },
+					{ name: "BONO, Richard",			died: 0, newname: "Rich Bono" },
+					{ name: "BORRELLI, Ralph",			died: 0, newname: "Ralph Borrelli" },
+					{ name: "BOTSCH, Mark",				died: 0, newname: "Mark Botsch" },
+					{ name: "BOWAN, Robert",			died: 0, newname: "Robert Bowan" },
+					{ name: "BRADFORD, Stephen",		died: 0, newname: "Stephen Bradford" },
+					{ name: "BRENNAN, Christine",		died: 0, newname: "Tina Grange-Gilhooly" },
+					{ name: "BRENNAN, Linda",			died: 0, newname: "Linda Brennan" },
+					{ name: "BRENNAN, Timothy",			died: 0, newname: "Tim Brennan" },
+					{ name: "BRILLIANT, Philip",		died: 0, newname: "Philip Brilliant" },
+					{ name: "BUCK, Andy",				died: 0, newname: "Andy Buck" },
+					{ name: "BURKE, Douglas",			died: 0, newname: "Doug Burke" },
+					{ name: "BURKE, Thomas",			died: 0, newname: "Tom Burke" },
+					{ name: "BURTON, Craig",			died: 0, newname: "Craig Burton" },
+					{ name: "CAFFREY, Ellen",			died: 0, newname: "Ellen Caffrey" },
+					{ name: "CAMPBELL, Douglas",		died: 0, newname: "Doug Campbell" },
+					{ name: "CAMPBELL, Mary",			died: 0, newname: "Mary Campbell" },
+					{ name: "CANTWELL, Gregory",		died: 0, newname: "Greg Cantwell" },
+					{ name: "CANUEL, Deborah",			died: 0, newname: "Debbie Canuel" },
+					{ name: "CARRAS, Cathy",			died: 0, newname: "Cathy Carras" },
+					{ name: "CASELDEN, Edward",			died: 1, newname: "Ed Caselden" },
+					{ name: "CHAFE, Edward",			died: 0, newname: "Edward Chafe" },
+					{ name: "CHAKARIAN, Carrie",		died: 0, newname: "Carrie Chakarian" },
+					{ name: "CHALIFOUR, Mary Elayne",	died: 0, newname: "Elayne Chalifour" },
+					{ name: "CHARLAND, Roy",			died: 0, newname: "Roy Charland" },
+					{ name: "CINALI, Umit",				died: 0, newname: "Umit Cinali" },
+					{ name: "CLIFTON, Andrea",			died: 0, newname: "Andy Clifton" },
+					{ name: "CLINT, Lynette",			died: 0, newname: "Lynette Clint" },
+					{ name: "CLOUGH, Douglas",			died: 0, newname: "Doug Clough" },
+					{ name: "COBURN, Krista",			died: 0, newname: "Krista Earley" },
+					{ name: "COFFEY, Geraldine",		died: 0, newname: "Geri Tallini" },
+					{ name: "COLLINS, Barbara",			died: 0, newname: "Barbara Beechner " },
+					{ name: "COLLINS, Harry",			died: 0, newname: "Harry Collins" },
+					{ name: "COLLINS, James",			died: 0, newname: "Jim Collins" },
+					{ name: "COLOMBOSIAN, Nancy",		died: 0, newname: "Nancy Czlonka" },
+					{ name: "COMPARATO, Thomas",		died: 0, newname: "Tom Comparato" },
+					{ name: "CONLON, Hugh",				died: 0, newname: "Hugh Conlon" },
+					{ name: "CONNOLLY, Edmond",			died: 0, newname: "Paul Connolly" },
+					{ name: "CONNOR, James",			died: 0, newname: "Jim Connor" },
+					{ name: "CONTARINO, Carol",			died: 0, newname: "Carol Andre" },
+					{ name: "CORCORAN, Stephen",		died: 0, newname: "Steve Corcoran" },
+					{ name: "COX, James",				died: 0, newname: "Jim Cox" },
+					{ name: "COX, Martha",				died: 0, newname: "Martha Cox" },
+					{ name: "COX, Paul",				died: 0, newname: "Paul Cox" },
+					{ name: "CRAIG, Heather",			died: 0, newname: "Heather Craig" },
+					{ name: "CROSWELL, Andrew",			died: 0, newname: "Andy Croswell" },
+					{ name: "CRUSH, William",			died: 0, newname: "Bill Crush" },
+					{ name: "CULL, David",				died: 0, newname: "Dave Cull" },
+					{ name: "CULL, John",				died: 1, newname: "John Cull" },
+					{ name: "CUMMINGS, Jeanie",			died: 0, newname: "Jeanie Cummings" },
+					{ name: "CURTIN, Michael",			died: 0, newname: "Mike Curtin" },
+					{ name: "D'ANTONI, James",			died: 1, newname: "Jim D'Antoni" },
+					{ name: "DALY, Ann Marie",			died: 0, newname: "Ann Marie Daly" },
+					{ name: "DAVIS, Mark",				died: 0, newname: "Mark Davis" },
+					{ name: "DAVIS, Martin",			died: 0, newname: "Marty Davis" },
+					{ name: "DEFRANCO, Mary",			died: 0, newname: "Mary Defranco" },
+					{ name: "DEGAN, Kathleen",			died: 0, newname: "Kathy McCurdy" },
+					{ name: "DEGREGORIO, Cathy",		died: 0, newname: "Cathy Degregorio" },
+					{ name: "DELANEY, Tracy",			died: 0, newname: "Tracey Ryan" },
+					{ name: "DELUCIA, Nancy",			died: 0, newname: "Nancy Delucia" },
+					{ name: "DEMERS, Rosemary",			died: 0, newname: "Rosey Davison" },
+					{ name: "DEROSA, Timothy",			died: 0, newname: "Tim Derosa" },
+					{ name: "DEROSIER, Michael",		died: 1, newname: "Michael Derosier" },
+					{ name: "DEVINE, Allen",			died: 1, newname: "Allen Devine" },
+					{ name: "DIAK, Thomas",				died: 0, newname: "Thomas Diak" },
+					{ name: "DIBITETTO, John",			died: 0, newname: "John Dibitetto" },
+					{ name: "DITROIA, Michael",			died: 0, newname: "Mike Ditroia" },
+					{ name: "DIXON, Barbara",			died: 0, newname: "Barbara Dixon" },
+					{ name: "DOHERTY, Jane",			died: 0, newname: "Jane Doherty" },
+					{ name: "DONOVAN, Sharon",			died: 0, newname: "Sharon Donovan" },
+					{ name: "DORAN, Michael",			died: 0, newname: "Michael Doran" },
+					{ name: "DOW, Virginia",			died: 0, newname: "Ginny Dow" },
+					{ name: "DOWD, Debra",				died: 0, newname: "Debbie Dowd" },
+					{ name: "DRISCOLL, Cyd",			died: 0, newname: "Cyd Driscoll Cohen" },
+					{ name: "DRISCOLL, Doreen",			died: 0, newname: "Doreen Driscoll" },
+					{ name: "DUBE, Susan",				died: 0, newname: "Sue Davis" },
+					{ name: "DUBOSE, Katherine",		died: 0, newname: "Katherine Fuerst" },
+					{ name: "DUFFTY, Philip",			died: 0, newname: "Phil Duffty" },
+					{ name: "DUFFY, Tom",				died: 0, newname: "Tom Duffy" },
+					{ name: "DUSTIN, Mary",				died: 0, newname: "Mary Dustin" },
+					{ name: "DWORKIN, Alan",			died: 0, newname: "Alan Dworkin" },
+					{ name: "ECKFELDT, Patricia",		died: 0, newname: "Patty Eckfeldt" },
+					{ name: "EICHNER, Jayne",			died: 0, newname: "Jayne Farnham" },
+					{ name: "EISENBERG, Edward",		died: 0, newname: "Eddie Eisenberg" },
+					{ name: "EOSEFOW, John",			died: 1, newname: "Craig Eosefow" },
+					{ name: "ERICKSON, Mark",			died: 0, newname: "Mark Erickson" },
+					{ name: "ERLER, Richard",			died: 0, newname: "Rick Erler" },
+					{ name: "ESTABROOK, Boyd",			died: 0, newname: "Boyd Estabrook" },
+					{ name: "FABIANI, Stephen",			died: 0, newname: "Steve Fabiani" },
+					{ name: "FAIR, Janice",				died: 0, newname: "Janice Fair" },
+					{ name: "FARIA, Linda",				died: 0, newname: "Linda Faria" },
+					{ name: "FARIA, Robert",			died: 0, newname: "Bob Faria" },
+					{ name: "FARRINGTON, Kathleen",		died: 0, newname: "Kit Farrington" },
+					{ name: "FICHERA, Vicki",			died: 0, newname: "Vicki Fichera" },
+					{ name: "FISHER, Madelaine",		died: 0, newname: "Madelaine Fisher" },
+					{ name: "FITZGERALD, David",		died: 0, newname: "Fitzy Fitzgerald" },
+					{ name: "FLANNERY, Brian",			died: 1, newname: "Brian Flannery" },
+					{ name: "FLEWWELLIN, Janet",		died: 0, newname: "Janet Flewwellin" },
+					{ name: "FORREST, Candace",			died: 0, newname: "Candy Jaffe" },
+					{ name: "FORTIER, Paul",			died: 0, newname: "Paul Fortier" },
+					{ name: "FOX, John",				died: 1, newname: "John Fox" },
+					{ name: "FRACKIEWICZ, Barbara",		died: 0, newname: "Barbara Frackiewicz" },
+					{ name: "FRANCIS, Sarah",			died: 0, newname: "Sarah Lafond" },
+					{ name: "FRANZ, Lesley",			died: 0, newname: "Lesley Helff" },
+					{ name: "FRANZE, Ingrid",			died: 0, newname: "Ingrid Franze" },
+					{ name: "FRANZESE, Karen",			died: 0, newname: "Karen Franzese" },
+					{ name: "FRASER, Sandra",			died: 0, newname: "Sandra Saldana" },
+					{ name: "FROST, Jason",				died: 0, newname: "Jason Frost" },
+					{ name: "GABLE, Jeffrey",			died: 0, newname: "Jeff Gable" },
+					{ name: "GALVIN, Michael",			died: 1, newname: "Mike Galvin" },
+					{ name: "GANTZ, Gregory",			died: 0, newname: "Greg Gantz" },
+					{ name: "GELARDI, Wayne",			died: 0, newname: "Wayne Gelardi" },
+					{ name: "GEORGE, Lynne",			died: 0, newname: "Lynne George" },
+					{ name: "GETTEL, Roger",			died: 0, newname: "Roger Gettel" },
+					{ name: "GOLDMAN, Jamie",			died: 0, newname: "Jamie Goldman" },
+					{ name: "GOLDMAN, Wendy",			died: 0, newname: "Wendy Goldman" },
+					{ name: "GONZALEZ, Jesus",			died: 0, newname: "Jesus Gonzalez" },
+					{ name: "GOUMAS, Michael",			died: 0, newname: "Michael Goumas" },
+					{ name: "GRANT, Marguerite",		died: 0, newname: "Marguerite Grant" },
+					{ name: "GRAVES, Tyrone",			died: 0, newname: "Tyrone Graves" },
+					{ name: "GRAY, Debra",				died: 0, newname: "Debbie Gray" },
+					{ name: "GRECOE, Kanella",			died: 1, newname: "Kanella Denoncourt" },
+					{ name: "GREENBERG, Alan",			died: 0, newname: "Al Greenberg" },
+					{ name: "GREENLEE, Kathleen",		died: 0, newname: "Kathy Greenlee" },
+					{ name: "GRILLO, MaryJo",			died: 0, newname: "MaryJo Marcely" },
+					{ name: "GRISWOLD, Nancy",			died: 0, newname: "Nancy Griswold" },
+					{ name: "GROEZINGER, Scott",		died: 0, newname: "Scott Groezinger" },
+					{ name: "GUILMETTE, JoAnn",			died: 0, newname: "JoAnn White" },
+					{ name: "GUSTAFSON, Daryl",			died: 0, newname: "Daryl Gustafson" },
+					{ name: "HADAM, Virginia",			died: 0, newname: "Ginny Hadam" },
+					{ name: "HALBACH, Meryl",			died: 0, newname: "Meryl Halbach" },
+					{ name: "HALPERT, Janet",			died: 0, newname: "Janet Halpert" },
+					{ name: "HAMILTON, Mark",			died: 0, newname: "Mark Hamilton" },
+					{ name: "HANBY, Robin",				died: 0, newname: "Robin Hanby" },
+					{ name: "HANNON, William",			died: 0, newname: "Billy Hannon" },
+					{ name: "HANSON, Donna",			died: 0, newname: "Donna Hanson" },
+					{ name: "HARDCASTLE, Ann",			died: 0, newname: "Annie Hardcastle" },
+					{ name: "HARHEN, Cynthia",			died: 0, newname: "Cindy Harhen" },
+					{ name: "HARTFORD, Allen",			died: 0, newname: "Allen Hartford" },
+					{ name: "HARTMAN, Diane",			died: 0, newname: "Di Thomas" },
+					{ name: "HAYMAN, Deborah",			died: 0, newname: "Debbie Hayman" },
+					{ name: "HEALY, Sandra",			died: 0, newname: "Sandy Healy Kwiecien" },
+					{ name: "HECKEN, Margit",			died: 0, newname: "Margit Iwanowicz" },
+					{ name: "HEINEMANN, Monika",		died: 0, newname: "Monika Heinemann" },
+					{ name: "HELLMAN, Steven",			died: 0, newname: "Steve Hellman" },
+					{ name: "HEMPSTEAD, David",			died: 0, newname: "Dave Hempstead" },
+					{ name: "HEMSWORTH, Laurie",		died: 0, newname: "Laurie Knapp" },
+					{ name: "HERR, John",				died: 0, newname: "John Herr" },
+					{ name: "HERRON, Sally",			died: 0, newname: "Sally Herron" },
+					{ name: "HILL, Erica",				died: 0, newname: "Erica Hill" },
+					{ name: "HILLMAN, Steven",			died: 1, newname: "Steve Hillman" },
+					{ name: "HODGE, Willie",			died: 0, newname: "Willie Hodge" },
+					{ name: "HOLMES, Penny",			died: 0, newname: "Penny Varga" },
+					{ name: "HOPKINS, Paula",			died: 0, newname: "Paula Hopkins" },
+					{ name: "HUGGINS, Patricia",		died: 0, newname: "Patti Huggins" },
+					{ name: "HUGHES, MaryLou",			died: 0, newname: "MaryLou Hughes" },
+					{ name: "HURLEY, Sheila",			died: 0, newname: "Sheila Clark" },
+					{ name: "HYSLIP, Donna",			died: 0, newname: "Donna Hyslip" },
+					{ name: "IACOBO, Maria",			died: 0, newname: "Maria Iacobo" },
+					{ name: "IANAZZI, Elizabeth",		died: 0, newname: "Beth Ianazzi" },
+					{ name: "IGOE, Anne",				died: 0, newname: "Anne Igoe" },
+					{ name: "JACOBSEN, Donna Lee",		died: 0, newname: "Donna Lee Poe" },
+					{ name: "JACQUES, Curtis",			died: 0, newname: "Curt Jacques" },
+					{ name: "JAFFE, Frederick",			died: 0, newname: "Rick Jaffe" },
+					{ name: "JOHNSON, Christine",		died: 0, newname: "Chris Collins" },
+					{ name: "JOHNSON, Kristin",			died: 0, newname: "Kris Johnson" },
+					{ name: "JOHNSON, Patricia",		died: 0, newname: "Patty Johnson" },
+					{ name: "JOHNSON, Sue Ellen",		died: 0, newname: "Sue Johnson" },
+					{ name: "JOLLIFFE, Elizabeth",		died: 1, newname: "Liddy Jolliffe" },
+					{ name: "JOLLIFFE, Margaret",		died: 1, newname: "Marge Jolliffe" },
+					{ name: "JORDAN, Jefferson",		died: 0, newname: "Jeff Jordan" },
+					{ name: "JOYNSON, Robert",			died: 0, newname: "Bob Joynson" },
+					{ name: "JUAREZ, John",				died: 0, newname: "John Juarez" },
+					{ name: "KALIL, Janet",				died: 0, newname: "Juanita Kalil" },
+					{ name: "KAPLAN, Amy",				died: 0, newname: "Amy Kaplan" },
+					{ name: "KAVANAGH, Elizabeth",		died: 1, newname: "Beth Kavanagh" },
+					{ name: "KEEFE, Mary",				died: 0, newname: "Mary Moriarty" },
+					{ name: "KEELER, Terry",			died: 0, newname: "Terry Keeler" },
+					{ name: "KELLEHER, Ellen",			died: 0, newname: "Ellen Kelleher" },
+					{ name: "KELLER, Kenneth",			died: 1, newname: "Ken Keller" },
+					{ name: "KELLEY, Elaine",			died: 0, newname: "Elaine Kelley" },
+					{ name: "KENNEY, Joshua",			died: 1, newname: "Josh Kenney" },
+					{ name: "KENNEY, William",			died: 0, newname: "Bill Kenney" },
+					{ name: "KING, Daniel",				died: 1, newname: "Dan King" },
+					{ name: "KING, Martha",				died: 0, newname: "Martha King" },
+					{ name: "KOCH, Daniel",				died: 0, newname: "Dan Koch" },
+					{ name: "KOFFMAN, Cathi",			died: 0, newname: "Cathi Koffman" },
+					{ name: "KRIKORIAN, Hope",			died: 0, newname: "Hope Fabinani" },
+					{ name: "KRIKORIAN, John",			died: 1, newname: "John Krikorian" },
+					{ name: "L'ITALIEN, Joseph",		died: 0, newname: "Joe L'Italien" },
+					{ name: "LABELL, Jeffrey",			died: 0, newname: "Jeff Labell" },
+					{ name: "LAFOND, Daniel",			died: 0, newname: "Dan Lafond" },
+					{ name: "LAFOUNTAIN, Jeffrey",		died: 0, newname: "Dutch Lafountain" },
+					{ name: "LAFRENIER, Audrey",		died: 0, newname: "Dee Lafrenier" },
+					{ name: "LANDER, Kirby",			died: 0, newname: "Kirby Lander" },
+					{ name: "LAROCHELLE, David",		died: 0, newname: "Dave Larochelle" },
+					{ name: "LAROSA, Robin",			died: 1, newname: "Robin Elkin-Larosa" },
+					{ name: "LARSON, Shannon",			died: 0, newname: "Shannon Reilly" },
+					{ name: "LARSON, Wayne",			died: 0, newname: "Wayne Larson" },
+					{ name: "LATORRE, Philip",			died: 0, newname: "Phil Latorre" },
+					{ name: "LEBOWITZ, Pamela",			died: 0, newname: "Pam Lebowitz" },
+					{ name: "LEFEBVRE, Lisa",			died: 0, newname: "Lisa Brennan" },
+					{ name: "LENES, Judy",				died: 0, newname: "Judy Lenes" },
+					{ name: "LENES, Trudy",				died: 0, newname: "Trudy Lenes" },
+					{ name: "LEVINSON, Karyl",			died: 0, newname: "Karyl Conescu" },
+					{ name: "LEWIS, William",			died: 0, newname: "Bill Lewis" },
+					{ name: "LINDSEY, Laura",			died: 0, newname: "Laura Lindsey" },
+					{ name: "LINDSEY, Michelle",		died: 0, newname: "Michelle Lindsey" },
+					{ name: "LIPPI, Karen",				died: 0, newname: "Karen Lippi" },
+					{ name: "LOEB, Ina",				died: 0, newname: "Ina Loeb" },
+					{ name: "LOOK, Robert",				died: 1, newname: "Robbie Look" },
+					{ name: "LOOSIGIAN, Lauren",		died: 0, newname: "Laurie Loosigian" },
+					{ name: "LYNCH, Cathleen",			died: 0, newname: "Cathy Lynch" },
+					{ name: "LYNCH, Danny",				died: 0, newname: "Danny Lynch" },
+					{ name: "LYNCH, Leo",				died: 0, newname: "Leo Lynch" },
+					{ name: "MACGOWAN, Bradford",		died: 0, newname: "Brad Macgowan" },
+					{ name: "MADENSKY, Ann",			died: 0, newname: "Ann Pozerycki" },
+					{ name: "MAFFEI, Gary",				died: 0, newname: "Gary Maffei" },
+					{ name: "MAGOON, Bonnie",			died: 0, newname: "Bonnie Haley" },
+					{ name: "MALONEY, Nancy",			died: 0, newname: "Nancy Cranney" },
+					{ name: "MALOOF, David",			died: 0, newname: "Dave Maloof" },
+					{ name: "MARCOUX, Nancy",			died: 0, newname: "Nancy Nunnery" },
+					{ name: "MARINO, Richard",			died: 0, newname: "Ricky Marino" },
+					{ name: "MARKEY, Philip",			died: 0, newname: "Philip Markey" },
+					{ name: "MARKHAM, Barbara",			died: 0, newname: "Barbara Kosma" },
+					{ name: "MARTELLUCCI, Pamela",		died: 0, newname: "Pam Martellucci" },
+					{ name: "MARTIN, William",			died: 1, newname: "Billy Martin" },
+					{ name: "MARVIN, Kathleen",			died: 0, newname: "Kathy Marvin" },
+					{ name: "MAYARD, Jean",				died: 0, newname: "Jean Mayard" },
+					{ name: "MAYO, Michael",			died: 0, newname: "Mike Mayo" },
+					{ name: "MCCABE, Kim",				died: 0, newname: "Kim McCabe" },
+					{ name: "MCCALLION, Margaret",		died: 0, newname: "Margaret McCallion" },
+					{ name: "MCCARTHY, Timothy",		died: 0, newname: "Tim McCarthy" },
+					{ name: "MCDONALD, Janet",			died: 0, newname: "Janny Quinlan" },
+					{ name: "MCDONALD, John",			died: 0, newname: "Mac McDonald" },
+					{ name: "MCENEANEY, Connie",		died: 0, newname: "Connie Rulon-Miller" },
+					{ name: "MCHALE, Patricia",			died: 0, newname: "Patti McHale" },
+					{ name: "MCINTOSH, Heidi",			died: 0, newname: "Heidi Simbolick" },
+					{ name: "MCINTYRE, Paul",			died: 0, newname: "Paul McIntyre" },
+					{ name: "MCKALLAGAT, Stephen",		died: 0, newname: "Steve McKallagat" },
+					{ name: "MCLARNEY, Mary Jo",		died: 0, newname: "Jo McLarney" },
+					{ name: "MCMANUS, Bonnie",			died: 0, newname: "Bonnie McManus" },
+					{ name: "MCNAMARA, Jane",			died: 0, newname: "Jane Solomon" },
+					{ name: "MCNAMARA, Joan",			died: 0, newname: "Joan McNamara" },
+					{ name: "MCVEY, Paul",				died: 1, newname: "Paul McVey" },
+					{ name: "MEYERS, Timothy",			died: 0, newname: "Tim Meyers" },
+					{ name: "MILLER, Kimberley",		died: 0, newname: "Kim Miller" },
+					{ name: "MILLS, Jessie",			died: 0, newname: "Jess Mills" },
+					{ name: "MILSTONE, David",			died: 0, newname: "Dave Milstone" },
+					{ name: "MINGHELLA, Nanci",			died: 0, newname: "Nanci Kasischke" },
+					{ name: "MINISCALCO, Joan",			died: 0, newname: "Joan Miniscalco" },
+					{ name: "MONTGOMERY, Kenneth",		died: 0, newname: "Ken Montgomery" },
+					{ name: "MOODIE, Diane",			died: 0, newname: "Diane Moodie" },
+					{ name: "MOONEY, John",				died: 0, newname: "Jack Mooney" },
+					{ name: "MOORE, Brian",				died: 0, newname: "Brian Moore" },
+					{ name: "MORIARTY, Mary Jane",		died: 0, newname: "Jane Moriarty" },
+					{ name: "MORRIS, Sharon",			died: 0, newname: "Sharon Morris" },
+					{ name: "MORRISON, Elise",			died: 0, newname: "Dee Morrison" },
+					{ name: "MORRISROE, Marie",			died: 0, newname: "Marie Morrisroe" },
+					{ name: "MOSELEY, Ann",				died: 0, newname: "Ann Moseley" },
+					{ name: "MOULTON, Susan",			died: 0, newname: "Susan Moulton" },
+					{ name: "MOWER, James",				died: 0, newname: "Jim Mower" },
+					{ name: "MUFSON, Neil",				died: 0, newname: "Neil Mufson" },
+					{ name: "MURGIA, Robert",			died: 0, newname: "Bob Murgia" },
+					{ name: "NAPOLI, Shirley",			died: 0, newname: "Shirley Napoli" },
+					{ name: "NARDONE, Gayle",			died: 0, newname: "Gayle Nardone" },
+					{ name: "NEGRON, Raymond",			died: 0, newname: "Ray Negron" },
+					{ name: "NEISTADT, Jill",			died: 0, newname: "Jill Neistadt" },
+					{ name: "NICOLOSI, Nina",			died: 0, newname: "Nina Nicolosi" },
+					{ name: "NOLAN, Joseph",			died: 0, newname: "Joe Nolan" },
+					{ name: "NOLLET, Judith",			died: 0, newname: "Judy Nollet" },
+					{ name: "NORRIS, Thomas",			died: 0, newname: "Tom Norris" },
+					{ name: "O'BRIEN, Joanne",			died: 0, newname: "Jody O'Brien" },
+					{ name: "O'CONNOR, Nancy",			died: 0, newname: "Nancy O'Connor" },
+					{ name: "O'REILLY, Jane",			died: 0, newname: "Jane O'Reilly" },
+					{ name: "OBERMEiER, Gary",			died: 0, newname: "Gary Obermeier" },
+					{ name: "ORLANDO, Edward",			died: 0, newname: "Ed Orlando" },
+					{ name: "OTTES, Peter",				died: 0, newname: "Pete Ottes" },
+					{ name: "PARENT, Gayle",			died: 0, newname: "Gayle Parent" },
+					{ name: "PARIS, John",				died: 0, newname: "John Paris" },
+					{ name: "PARK, Regina",				died: 0, newname: "Regina Currid" },
+					{ name: "PAYNE, Kimberly",			died: 0, newname: "Kim Chaisson" },
+					{ name: "PECK, Jeffrey",			died: 0, newname: "Jeff Peck" },
+					{ name: "PELC, Julie",				died: 0, newname: "Julie Pelc" },
+					{ name: "PERRAULT, Mona",			died: 0, newname: "Mona Perrault" },
+					{ name: "PETERSON, Robert",			died: 1, newname: "Bob Peterson" },
+					{ name: "PETTY, Glen",				died: 0, newname: "Glen Petty" },
+					{ name: "PETTY, Vivian",			died: 0, newname: "Vivian Hrabal" },
+					{ name: "PORCARO, Donna",			died: 0, newname: "Dawn Porcaro" },
+					{ name: "PORTER, Steven",			died: 0, newname: "Steve Porter" },
+					{ name: "POWERS, Barbara",			died: 0, newname: "Barbara Powers" },
+					{ name: "PRATT, David",				died: 0, newname: "Dave Pratt" },
+					{ name: "RAMSDELL, Carolyn",		died: 0, newname: "Carolyn Ramsdell" },
+					{ name: "RANDALL, Kathleen",		died: 0, newname: "Kathy Randall" },
+					{ name: "RATTE, MaryAnne",			died: 0, newname: "MaryAnne Ratte" },
+					{ name: "REARDON, Lianne",			died: 0, newname: "Lianne Halloran " },
+					{ name: "REDDINGTON, Christine",	died: 0, newname: "Chris Reddington" },
+					{ name: "REILLY, Peter",			died: 0, newname: "Peter Reilly" },
+					{ name: "REMING, Kurt",				died: 0, newname: "Kurt Reming" },
+					{ name: "RENNY, Karen",				died: 0, newname: "Karen Renny" },
+					{ name: "RINDONE, Paul",			died: 0, newname: "Paul Rindone" },
+					{ name: "ROBSON, Matthew",			died: 0, newname: "Matt Robson" },
+					{ name: "ROCHWARG, John",			died: 0, newname: "John Rochwarg" },
+					{ name: "ROMANO, Cindy",			died: 0, newname: "Cindy Roma" },
+					{ name: "ROMANO, Susan",			died: 0, newname: "Sue Romano" },
+					{ name: "ROSEN, Douglas",			died: 0, newname: "Doug Rosen" },
+					{ name: "ROSSITTO, Neila",			died: 0, newname: "Annie Rossitto" },
+					{ name: "ROY, Carmel",				died: 0, newname: "Carmel Roy" },
+					{ name: "RUSSELL, Laura",			died: 0, newname: "Laura Russell" },
+					{ name: "RUSSO, Michael",			died: 0, newname: "Mike Russo" },
+					{ name: "SABA, Kevin",				died: 0, newname: "Kevin Saba" },
+					{ name: "SALOIS, Audrey",			died: 0, newname: "Audrey Spaulding" },
+					{ name: "SANBORN, Rena",			died: 1, newname: "Rena Sanborn" },
+					{ name: "SANCHEZ, Virgil",			died: 0, newname: "Bill Sanchez" },
+					{ name: "SAUNDERS, Diane",			died: 0, newname: "Di Saunders" },
+					{ name: "SAVINELLI, Linda",			died: 0, newname: "Linda Savinelli" },
+					{ name: "SCHADLICK, William",		died: 0, newname: "Bill Schadlick" },
+					{ name: "SCHOFIELD, Linda",			died: 0, newname: "Linda Schofield" },
+					{ name: "SCHOFIELD, Lora",			died: 0, newname: "Lora Schofield" },
+					{ name: "SHACK, Karen",				died: 0, newname: "Karen Shack" },
+					{ name: "SHAW, John",				died: 0, newname: "John Shaw" },
+					{ name: "SHEEHAN, Nancy",			died: 0, newname: "Nancy Sheehan" },
+					{ name: "SHEPHERD, Daniel",			died: 0, newname: "Dan Shepherd" },
+					{ name: "SHERMAN, Scott",			died: 0, newname: "Scott Sherman" },
+					{ name: "SHERRERD, Alan",			died: 0, newname: "Alan Sherrerd" },
+					{ name: "SIDERWITCH, Kent",			died: 0, newname: "Kent Siderwitch" },
+					{ name: "SILVERMAN, Nicki",			died: 0, newname: "Nicki Silverman" },
+					{ name: "SIMON, Margo",				died: 1, newname: "Margo Golden" },
+					{ name: "SIMPSON, Beverly",			died: 0, newname: "Bev Kantorski" },
+					{ name: "SIROIS, David",			died: 0, newname: "Dave Sirois" },
+					{ name: "SKELLCHOCK, Steve",		died: 0, newname: "Steve Skellchock" },
+					{ name: "SMYTHE, Victoria",			died: 0, newname: "Vicky Smythe" },
+					{ name: "SOCHA, Paula",				died: 0, newname: "Paula Socha" },
+					{ name: "SOMMA, Michele",			died: 0, newname: "Michele Dussault" },
+					{ name: "SOUZA, David",				died: 0, newname: "Dave Souza" },
+					{ name: "SQUIBB, Carolyn",			died: 0, newname: "Carolyn Squibb" },
+					{ name: "ST. AMAND, Randall",		died: 0, newname: "Randy St. Amand" },
+					{ name: "ST. GERMAIN, Brenda",		died: 0, newname: "Brenda King" },
+					{ name: "ST. GERMAIN, Roch",		died: 0, newname: "Rocky St. Germain" },
+					{ name: "ST. LOUIS, Richard",		died: 0, newname: "Rich St. Louis" },
+					{ name: "STAMAS, Theodore",			died: 0, newname: "TJ Stamas" },
+					{ name: "STARKS, Waneta",			died: 0, newname: "Waneta Starks" },
+					{ name: "STEIN, Tobie",				died: 0, newname: "Tobie Stein" },
+					{ name: "STEWART, Leslie",			died: 0, newname: "Les Stewart" },
+					{ name: "STRAUSS, Myrna",			died: 0, newname: "Myrna Strauss" },
+					{ name: "STUPACK, Robin",			died: 0, newname: "Robin Stupack" },
+					{ name: "SULLIVAN, Cynthia",		died: 0, newname: "Cindy Fortier" },
+					{ name: "SULLIVAN, Debbie",			died: 0, newname: "Debbie Sullivan" },
+					{ name: "SULLIVAN, Mary Lou",		died: 1, newname: "Mary Lou Sullivan" },
+					{ name: "SULLIVAN, Nancy",			died: 0, newname: "Nancy Sullivan" },
+					{ name: "SUMNER, Patricia",			died: 0, newname: "Patty Sumner" },
+					{ name: "SUNDSTROM, Paula",			died: 0, newname: "Paula Sundstrom" },
+					{ name: "SYIEK, David",				died: 0, newname: "Dave Syiek" },
+					{ name: "TAFT, Philip",				died: 0, newname: "Phil Taft" },
+					{ name: "TALLINI, David",			died: 0, newname: "David Tallini" },
+					{ name: "TANNER, John",				died: 0, newname: "Jack Tanner" },
+					{ name: "TASSINARI, Russell",		died: 0, newname: "Russell Tassinari" },
+					{ name: "TAYLOR, Leonard",			died: 1, newname: "Lenny Taylor" },
+					{ name: "TAYMOR, Sharyn",			died: 0, newname: "Sharyn Taymor" },
+					{ name: "TETREAULT, Mary",			died: 0, newname: "Mary Tetreault" },
+					{ name: "THERRIEN, Patricia",		died: 0, newname: "Patti Dore" },
+					{ name: "THIBODEAU, Joyce",			died: 0, newname: "Joyce Thibodeau" },
+					{ name: "THOMPKINS, Kyle",			died: 0, newname: "Kyle Thompkins" },
+					{ name: "TOSCANO, Michael",			died: 0, newname: "Jim Toscano" },
+					{ name: "TOWNE, Susan",				died: 0, newname: "Sue Towne" },
+					{ name: "TRAVIS, Mark",				died: 0, newname: "Mark Travis" },
+					{ name: "TRUJILLO, Liliam",			died: 0, newname: "Lil Negrelli" },
+					{ name: "TURESKY, Scott",			died: 0, newname: "Scott Turesky" },
+					{ name: "TURGISS, Keith",			died: 0, newname: "Keith Turgiss" },
+					{ name: "TYNING, Nancy",			died: 0, newname: "Nancy Tyning" },
+					{ name: "UNDERWOOD, Christopher",	died: 0, newname: "Chris Underwood" },
+					{ name: "VONDELL, Dirk",			died: 1, newname: "Dirk Vondell" },
+					{ name: "WALKUP, Sharon",			died: 0, newname: "Sharon Walkup" },
+					{ name: "WALLIS, Ian",				died: 0, newname: "Ian Wallis" },
+					{ name: "WALSH, Douglas",			died: 0, newname: "Doug Walsh" },
+					{ name: "WALSH, Nancie",			died: 0, newname: "Nancie Walsh" },
+					{ name: "WATTS, Deborah",			died: 0, newname: "Debbie Collins" },
+					{ name: "WEDGE, Paul",				died: 0, newname: "Paul Wedge" },
+					{ name: "WEST, Carl",				died: 0, newname: "Carl West" },
+					{ name: "WESTAWAY, Deborah",		died: 0, newname: "Deb Westaway" },
+					{ name: "WETTERBERG, Wendi",		died: 0, newname: "Wendi MacDonald" },
+					{ name: "WHITE, Denise",			died: 0, newname: "Denise Bennett" },
+					{ name: "WHITNEY, Carolee",			died: 0, newname: "Carolee Burnell" },
+					{ name: "WHITTON, Dennis",			died: 0, newname: "Dennis Whitton" },
+					{ name: "WHITTON, Judy",			died: 0, newname: "Judy Whitton" },
+					{ name: "WILDE, Ellen",				died: 0, newname: "Ellen Wilde" },
+					{ name: "WILE, Janice",				died: 0, newname: "Janny Wile" },
+					{ name: "WILKINS, Stephen",			died: 0, newname: "Steve Wilkins" },
+					{ name: "WILLIAMS, Michael",		died: 0, newname: "Mike Williams" },
+					{ name: "WILLIAMS, Nathaniel",		died: 0, newname: "Nate Williams" },
+					{ name: "WILLWERTH, James",			died: 0, newname: "Jim Willwerth" },
+					{ name: "WINTERS, Jeffrey",			died: 0, newname: "Jeff Winters" },
+					{ name: "WINTERS, Sean",			died: 1, newname: "Sean Winters" },
+					{ name: "WOJTKUN, Joseph",			died: 1, newname: "Joe Wojtkun" },
+					{ name: "WRIGHT, Diane",			died: 0, newname: "Diane Wright" },
+					{ name: "WRIGLEY, Donna",			died: 0, newname: "Donna Wrigley" },
+					{ name: "YEITER, Donna",			died: 0, newname: "Donna Yeiter" },
+					{ name: "YOUNG, David",				died: 0, newname: "Dave Young" },
+					{ name: "YOUNG, Diane",				died: 0, newname: "Diane Young" },
+					{ name: "YOUNG, Jennifer",			died: 0, newname: "Jennie Young" },
+					{ name: "YOUNG, Leonard",			died: 0, newname: "Leonard Young" },
+					{ name: "YOUNG, Mark",				died: 0, newname: "Mark Young" },
+					{ name: "YOUNG, Merle",				died: 0, newname: "Merle Young" },
+					{ name: "YOUNG, Nancy",				died: 0, newname: "Nancy Borden" },
+					{ name: "YOUNG, Robert",			died: 0, newname: "Robert Young" },
+					{ name: "ZAPPALA, Jonathan",		died: 0, newname: "Jon Zappala" },
+					{ name: "ZEMIS, John",				died: 0, newname: "Jack Zemis" },
+				];
 
-                const list = document.querySelector('#list');
+				const list = document.querySelector('#list');
 
-                createItems();
+				createItems();
 
-                const params = new URLSearchParams(document.location.search);
-                var searchText = params.get("name");
-                document.querySelector("#searchText").value = searchText;
-                searchItems(searchText);
+				const params = new URLSearchParams(document.location.search);
+				var searchText = params.get("name");
+				document.querySelector("#searchText").value = searchText;
+				searchItems(searchText);
 
-                function createItems() {
+				function createItems() {
 
-                    for (let name of names) {
+					for (let student of students) {
 
-                        const template = document.querySelector('#itemTemplate');
-                        const element = template.content.cloneNode(true);
-                        element.querySelector("#name").innerText = name;
-                        element.querySelector("#image").src += name + ".jpg";
-                        element.querySelector("#image").alt = name;
-                        element.querySelector("#image").addEventListener("click", function () {
-                            const image = this;
-                            const isColor = image.src.includes("cimages");
-                            const oldFolder = (isColor ? "cimages" : "images");
-                            const newFolder = (isColor ? "images" : "cimages");
-                            image.src = image.src.replace(oldFolder, newFolder);
-                        });
+						const template = document.querySelector('#itemTemplate');
+						const element = template.content.cloneNode(true);
+						const name = student.name;
+						const newname = student.newname;
+						const died = student.died;
+						element.querySelector("#name").innerText = name;
+						element.querySelector("#newname").innerText = newname;
+						element.querySelector("#died").hidden = !died;
+						element.querySelector("#image").src += name + ".jpg";
+						element.querySelector("#image").alt = name;
+						element.querySelector("#image").addEventListener("click", function () {
+							const image = this;
+							const isColor = image.src.includes("cimages");
+							const oldFolder = (isColor ? "cimages" : "images");
+							const newFolder = (isColor ? "images" : "cimages");
+							image.src = image.src.replace(oldFolder, newFolder);
+						});
 
-                        const functionA = element.querySelector("#image").click;
-                        list.appendChild(element);
-                    }
-                }
+						const functionA = element.querySelector("#image").click;
+						list.appendChild(element);
+					}
+				}
 
-                function searchItems(searchText) {
-                    if (searchText == null)
-                        return;
-                    searchText = searchText.toLowerCase().trim();
+				function searchItems(searchText) {
+					if (searchText == null)
+						return;
+					searchText = searchText.toLowerCase().trim();
 
-                    var index = 0;
-                    for (let name of names) {
-                        const show = name.toLowerCase().includes(searchText);
-                        showElement(index, show);
-                        index++;
-                    }
+					const ignoreDeceased = !document.querySelector('#deceased').checked;
 
-                    scrollToFirstElementShown();
-                }
-            });
+					var index = 0;
+					for (let student of students)
+					{
+						const name = student.name;
+						const newname = student.newname;
+						const deceasedMatch = ignoreDeceased || student.died; 
+						const show = deceasedMatch && (name.toLowerCase().includes(searchText) || newname.toLowerCase().includes(searchText));
+						showElement(index, show);
+						index++;
+					}
 
-        })(jQuery);
-    </script>
+					scrollToFirstElementShown();
+				}
+			});
+
+		})(jQuery);
+	</script>
 </head>
 
 <template id="itemTemplate">
-    <div id="item">
-        <img id="image" src="cimages/" height="400" alt="" />
-        <p id="name" style="font-weight:bold"></p>
-    </div>
+	<div id="item">
+		<img id="image" src="cimages/" height="400" alt="" />
+		<p>
+			<span id="name" style="font-weight:bold"></span>
+			<img id="died" src="icons/deceased.png" height="20" alt="" />
+			<br />
+			<span id="newname" style="font-weight:normal"></span>
+		</p>
+	</div>
 </template>
 
 <body>
-    <div id="header">
-        <h2>Andover High School, Class of 1975</h2>
-        <p>Searchable yearbook photos.</p>
-    </div>
+	<div id="header">
+		<h2>Andover High School, Class of 1975</h2>
+		<p>Searchable yearbook photos.</p>
+	</div>
 
-    <div id="navbar">
-        <a class="active" href="javascript:gotoTop()">Top</a>
-        <a class="active" href="javascript:gotoBottom()">Bottom</a>
-        <input id="searchText" type="search" placeholder="Search..." title="Type in a name or a partial name" />
-    </div>
+	<div id="navbar">
+		<a class="active" href="javascript:gotoTop()">Top</a>
+		<a class="active" href="javascript:gotoBottom()">Bottom</a>
+		<label>
+			<input type="checkbox" id="deceased" value="no" />
+			Deceased?
+		</label>
+		<input id="searchText" type="search" placeholder="Search..." title="Type in a name or a partial name" />
+	</div>
 
-    <div id="list">
-    </div>
+	<div id="list">
+	</div>
 
 </body>
 
 </html>
+
